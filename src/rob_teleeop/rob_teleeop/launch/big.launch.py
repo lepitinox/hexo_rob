@@ -26,6 +26,7 @@ def generate_launch_description():
         [PathJoinSubstitution([FindPackageShare("rob_teleeop"), "base.urdf.xacro"])]
     )
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf.xacro"
+    path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
     robot_description_content = Command([path])
 
     robot_description = {"robot_description": robot_description_content}
