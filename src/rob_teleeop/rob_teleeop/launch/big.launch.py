@@ -25,7 +25,7 @@ def generate_launch_description():
 
     robot_description = {"robot_description": robot_description_content}
     with open(path, 'r') as file:
-        data = file.read().replace('\n', '')
+        data = file.read()
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package='robot_state_publisher',
