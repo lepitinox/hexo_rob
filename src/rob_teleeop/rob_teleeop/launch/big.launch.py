@@ -22,6 +22,8 @@ def generate_launch_description():
 
     robot_description = {"robot_description": robot_description_content}
 
+    print(PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"]))
+
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package='robot_state_publisher',
