@@ -29,12 +29,16 @@ def generate_launch_description():
     )
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf.xacro"
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
-    robot_description_content = Command([path])
 
-    robot_description_content = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
+
+    model_arg = DeclareLaunchArgument(name='model', default_value=str(path),
+                                      description='Absolute path to robot urdf file')
+    
+    
+    robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
                                        value_type=str)
 
-    robot_description = {"robot_description": robot_description_content}
+
     with open(path, "r") as file:
         data = file.read()
 
@@ -51,6 +55,7 @@ def generate_launch_description():
     # Describe the launch process
     ld = LaunchDescription(
         [
+            model_arg,
             robot_state_publisher,
             rviz_node,
         ]
