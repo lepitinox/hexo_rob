@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
 import os
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch.substitutions import Command, FindExecutable,PathJoinSubstitution
-from launch_ros.substitutions import FindPackageShare
+from launch_ros.substitutions import FindPackageShare, find_packages
 
 from pathlib import Path
 
@@ -17,8 +18,9 @@ def generate_launch_description():
    #    executable='rviz2',
    #    name='rviz2',
    #    arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
-   #)
-    robot_description_content = Command([PathJoinSubstitution([FindPackageShare("rob_teleeop"),"base.urdf.xacro"])])
+   #
+    rob_des_link = FindPackageShare("rob_teleeop"),"base.urdf.xacro"
+    robot_description_content = Command([PathJoinSubstitution([rob_des_link])])
 
     robot_description = {"robot_description": robot_description_content}
 
