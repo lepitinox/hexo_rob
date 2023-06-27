@@ -23,7 +23,7 @@ def generate_launch_description():
             "/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz",
         ],
     )
-
+    print("OKLOLOLOL :", Command("whoami"))
 
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf.xacro"
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
