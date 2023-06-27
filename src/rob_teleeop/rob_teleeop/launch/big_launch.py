@@ -12,7 +12,7 @@ def generate_launch_description():
     # Get the file path to the example RViz configuration and the example URDF file
     rviz_config_file = os.path.join(get_package_share_directory('your_package_name'), 'config', 'example.rviz')
     urdf_file = os.path.join(get_package_share_directory('your_package_name'), 'urdf', 'base.urdf.xacro')
-
+    
     # Configure the RViz2 node
     rviz_node = Node(
         package='rviz2',
