@@ -63,7 +63,7 @@
     <origin xyz="0 0 0.10" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="palm_link" />
-    <limit effort="100" velocity="velocity_value"
+    <limit effort="100" velocity="0"
     lower="0" upper="12" />
 </joint>
 
