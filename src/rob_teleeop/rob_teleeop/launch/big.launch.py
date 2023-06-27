@@ -24,14 +24,15 @@ def generate_launch_description():
     robot_description_content = Command([path])
 
     robot_description = {"robot_description": robot_description_content}
-
+    with open(path, 'r') as file:
+        data = file.read().replace('\n', '')
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': path}],
+        parameters=[{'robot_description': data}],
     )
 
     # Describe the launch process
