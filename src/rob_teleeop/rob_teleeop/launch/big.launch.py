@@ -18,7 +18,7 @@ def generate_launch_description():
    #    name='rviz2',
    #    arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
    #)
-    robot_description_content = Command([PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf.xacro"])])
+    robot_description_content = Command([PathJoinSubstitution([FindPackageShare("rob_teleeop"),"base.urdf.xacro"])])
 
     robot_description = {"robot_description": robot_description_content}
 
