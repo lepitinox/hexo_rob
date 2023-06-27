@@ -18,11 +18,9 @@ def generate_launch_description():
    #    name='rviz2',
    #    arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
    #)
-    robot_description_content = Command([PathJoinSubstitution([FindExecutable(name="xacro")])," ",PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"])])
+    robot_description_content = Command([PathJoinSubstitution([FindExecutable(name="xacro")])," ",PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf.xacro"])])
 
     robot_description = {"robot_description": robot_description_content}
-
-    print("OKLOL : ",str(PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"])))
 
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
@@ -30,7 +28,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"])}],
+        parameters=[{'robot_description': robot_description_content}],
     )
 
     # Describe the launch process
