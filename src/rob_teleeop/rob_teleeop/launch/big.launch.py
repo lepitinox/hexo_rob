@@ -22,7 +22,7 @@ def generate_launch_description():
 
     robot_description = {"robot_description": robot_description_content}
 
-    print(str(PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"])))
+    print("OKLOL : ",str(PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","base.urdf"])))
 
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
