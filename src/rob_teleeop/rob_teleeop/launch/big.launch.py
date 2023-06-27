@@ -12,12 +12,12 @@ def generate_launch_description():
 
     
     # Configure the RViz2 node
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
-    )
+   #rviz_node = Node(
+   #    package='rviz2',
+   #    executable='rviz2',
+   #    name='rviz2',
+   #    arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
+   #)
     robot_description_content = Command([PathJoinSubstitution([FindExecutable(name="xacro")])," ",PathJoinSubstitution([FindPackageShare("rob_teleeop"),"rob_teleeop/urdf","my_robot.urdf"])])
 
     robot_description = {"robot_description": robot_description_content}
@@ -33,7 +33,7 @@ def generate_launch_description():
 
     # Describe the launch process
     ld = LaunchDescription([
-        rviz_node,
+   #     rviz_node,
         robot_state_publisher,
     ])
 
