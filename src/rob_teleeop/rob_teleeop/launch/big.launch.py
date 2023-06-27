@@ -28,7 +28,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': "/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/urdf/robot.urdf"}],
+        parameters=[{'robot_description': "/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf"}],
     )
 
     # Describe the launch process
