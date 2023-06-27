@@ -18,7 +18,7 @@
     <geometry>
     <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
     </geometry>
-    <material name="green"/>
+<!--         <material name="green"/> -->
     </visual>
 
     <collision>
@@ -41,7 +41,7 @@
     <geometry>
     <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
     </geometry>
-    <material name="red"/>
+<!--    <material name="red"/> -->
     </visual>
 
     <collision>
@@ -64,7 +64,7 @@
     <parent link="base_link" />
     <child link="palm_link" />
     <limit effort="effort_value" velocity="velocity_value"
-    lower="lower_limit" upper="upper_limit" />
+    lower="0" upper="12" />
 </joint>
 
 <!-- Macro finger -->
