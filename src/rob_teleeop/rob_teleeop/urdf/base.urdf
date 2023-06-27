@@ -4,6 +4,14 @@
 <!-- Included URDF/XACRO Files -->
 <xacro:include filename="$(find robot_nano_hand_teleop)/urdf/finger.xacro" />
 <xacro:property name="M_PI" value="3.14159"/>
+<xacro:property name="baseMass" value="3.14159"/>
+<xacro:property name="baseLength" value="3.14159"/>
+<xacro:property name="baseWidth" value="3.14159"/>
+<xacro:property name="baseHeight" value="3.14159"/>
+<xacro:property name="chassisLength" value="3.14159"/>
+<xacro:property name="lower_limit" value="3.14159"/>
+<xacro:property name="upper_limit" value="3.14159"/>
+
 <link name="base_link">
     <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
