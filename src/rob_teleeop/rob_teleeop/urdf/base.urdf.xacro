@@ -61,7 +61,7 @@
 
 <!-- Macro finger -->
 <xacro:finger parent="palm_link" prefix="finger1">
-<origin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 ${M_PI/2}" />
+<origin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
 </xacro:finger>
 </robot>
 <xacro:finger parent="palm_link" prefix="finger2">

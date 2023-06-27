@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
 <xacro:macro name="finger" params="parent prefix joint_type">
-<link name="${prefix}_link" />
+<link name="${prefix}_link" >
+<visual>
+<mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_finger1_link1.stl" scale="1 1 1"/>
+</visual>
+</link>
 <joint name="${prefix}_joint" type="${joint_type}">
 <parent link="${parent}"/>
 <child link="${prefix}_link"/>
