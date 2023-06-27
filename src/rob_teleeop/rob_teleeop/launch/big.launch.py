@@ -13,7 +13,9 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz2',
+        arguments=['-d', '/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz'],
     )
+    
 
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
