@@ -41,7 +41,6 @@ def generate_launch_description():
     with open(path, "r") as file:
         data = file.read()
 
-    cpm = Command()
     ExecuteProcess(
         cmd=["whoami"],
         output='screen'
