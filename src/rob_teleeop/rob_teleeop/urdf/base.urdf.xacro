@@ -60,19 +60,19 @@
 </joint>
 
 <!-- Macro finger -->
-<xacro:finger parent="palm_link" prefix="finger1">
+<xacro:finger parent="palm_link" prefix="finger1" link="1">
 <origin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
 </xacro:finger>
 </robot>
-<xacro:finger parent="palm_link" prefix="finger2">
+<xacro:finger parent="finger1" prefix="finger2" link="2">
 <origin xyz="-0.002487 0 0" rpy="9.00686 -0.124082 89.8118" />
 </xacro:finger>
 </robot>
-<xacro:finger parent="palm_link" prefix="finger3">
+<xacro:finger parent="finger2" prefix="finger3" link="3">
 <origin xyz="-0.040844 0.000126 0.00357" rpy="8.94359 0.091051 89.9831" />
 </xacro:finger>
 </robot>
-<xacro:finger parent="palm_link" prefix="finger4">
+<xacro:finger parent="finger3" prefix="finger4" link="4">
 <origin xyz="-0.029121 0.000013 0.002736" rpy="11.2847 -0.04374 89.947" />
 </xacro:finger>
 </robot>
