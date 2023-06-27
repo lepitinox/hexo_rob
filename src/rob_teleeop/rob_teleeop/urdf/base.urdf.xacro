@@ -1,86 +1,84 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_nano_hand_teleop">
-<xacro:arg name="gazebo" default="false"/>
-<!-- Included URDF/XACRO Files -->
-<xacro:include filename="$(find robot_nano_hand_teleop)/urdf/finger.urdf.xacro" />
-<xacro:property name="M_PI" value="3.14159"/>
-<xacro:property name="baseMass" value="3.14159"/>
-<xacro:property name="baseLength" value="3.14159"/>
-<xacro:property name="baseWidth" value="3.14159"/>
-<xacro:property name="baseHeight" value="3.14159"/>
-<xacro:property name="chassisLength" value="3.14159"/>
-<xacro:property name="lower_limit" value="3.14159"/>
-<xacro:property name="upper_limit" value="3.14159"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rob_teleeop">
+    <xacro:arg name="gazebo" default="false"/>
 
-<link name="base_link">
-    <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-    <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
-    </geometry>
-<!--         <material name="green"/> -->
-    </visual>
+    <xacro:include filename="$(find rob_teleeop)/rob_teleeop/urdf/finger.urdf.xacro" />
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="baseMass" value="3.14159"/>
+    <xacro:property name="baseLength" value="3.14159"/>
+    <xacro:property name="baseWidth" value="3.14159"/>
+    <xacro:property name="baseHeight" value="3.14159"/>
+    <xacro:property name="chassisLength" value="3.14159"/>
+    <xacro:property name="lower_limit" value="3.14159"/>
+    <xacro:property name="upper_limit" value="3.14159"/>
 
-    <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-    <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
-    </geometry>
-    </collision>
+    <link name="base_link">
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
+        </geometry>
+    <!--         <material name="green"/> -->
+        </visual>
 
-<!--     <inertial> -->
-<!--     <origin xyz="${-chassisLength/2 +0.2} 0 0.20" rpy="0 0 0"/> -->
-<!--     <mass value="${baseMass}"/> -->
-<!--     <xacro:box_inertia m="${baseMass}" x="${baseLength}"y="${baseWidth}" z="${baseHeight}"/> -->
-<!--     </inertial> -->
-</link>
-<!-- Palm link -->
-<link name="palm_link">
-    <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-    <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
-    </geometry>
-<!--    <material name="red"/> -->
-    </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
+        </geometry>
+        </collision>
 
-    <collision>
-    <origin xyz="0 0 0.123" rpy="0 0 0"/>
-    <geometry>
-    <mesh filename="file:///$(find robot_nano_hand_teleop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
-    </geometry>
-    </collision>
+        <inertial>
+            <origin xyz="${-chassisLength/2 +0.2} 0 0.20" rpy="0 0 0"/>
+            <mass value="${baseMass}"/>
+            <xacro:box_inertia m="${baseMass}" x="${baseLength}"y="${baseWidth}" z="${baseHeight}"/>
+        </inertial>
+    </link>
+    <!-- Palm link -->
+    <link name="palm_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
+            </geometry>
+        </visual>
 
-<!--    <inertial> -->
-<!--    <origin xyz="${-chassisLength/2 +0.2} 0 0.20" rpy="0 0 0"/> -->
-<!--    <mass value="${baseMass}"/> -->
-<!--    <xacro:box_inertia m="${baseMass}" x="${baseLength}"y="${baseWidth}" z="${baseHeight}"/> -->
-<!--    </inertial> -->
-</link>
+        <collision>
+            <origin xyz="0 0 0.123" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
 
-<!-- Palm joint -->
-<joint name="my_joint" type="continuous">
-    <origin xyz="0 0 0.10" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="palm_link" />
-    <limit effort="100" velocity="0"
-    lower="0" upper="12" />
-</joint>
+    <!--    <inertial> -->
+    <!--    <origin xyz="${-chassisLength/2 +0.2} 0 0.20" rpy="0 0 0"/> -->
+    <!--    <mass value="${baseMass}"/> -->
+    <!--    <xacro:box_inertia m="${baseMass}" x="${baseLength}"y="${baseWidth}" z="${baseHeight}"/> -->
+    <!--    </inertial> -->
+    </link>
 
-<!-- Macro finger -->
-<xacro:finger parent="palm_link" prefix="finger1" link="1" type="continuous">
-<origin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
-</xacro:finger>
+    <!-- Palm joint -->
+    <joint name="my_joint" type="continuous">
+        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="palm_link" />
+        <limit effort="100" velocity="0" lower="0" upper="12" />
+    </joint>
 
-<xacro:finger parent="finger1" prefix="finger2" link="2" type="continuous">
-<origin xyz="-0.002487 0 0" rpy="9.00686 -0.124082 89.8118" />
-</xacro:finger>
+    <!-- Macro finger -->
+    <xacro:finger parent="palm_link" prefix="finger1" link="1" type="continuous">
+    <o  gin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
+    </xacro:finger>
 
-<xacro:finger parent="finger2" prefix="finger3" link="3" type="continuous">
-<origin xyz="-0.040844 0.000126 0.00357" rpy="8.94359 0.091051 89.9831" />
-</xacro:finger>
+    <xacro:finger parent="finger1" prefix="finger2" link="2" type="continuous">
+    <ori    in xyz="-0.002487 0 0" rpy="9.00686 -0.124082 89.8118" />
+    </xacro:finger>
 
-<xacro:finger parent="finger3" prefix="finger4" link="4" type="continuous">
-<origin xyz="-0.029121 0.000013 0.002736" rpy="11.2847 -0.04374 89.947" />
-</xacro:finger>
+    <xacro:finger parent="finger2" prefix="finger3" link="3" type="continuous">
+    <or gin xyz="-0.040844 0.000126 0.00357" rpy="8.94359 0.091051 89.9831" />
+    </xacro:finger>
+
+    <xacro:finger parent="finger3" prefix="finger4" link="4" type="continuous">
+        rigin xyz="-0.029121 0.000013 0.002736" rpy="11.2847 -0.04374 89.947" />
+    </xacro:finger>
 </robot>
