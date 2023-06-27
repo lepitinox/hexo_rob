@@ -41,9 +41,9 @@ def generate_launch_description():
     with open(path, "r") as file:
         data = file.read()
 
-    cpm = Command(["whoami"])
+    cpm = Command()
     ExecuteProcess(
-        cmd=cpm,
+        cmd=["whoami"],
         output='screen'
     )
     # Configure the robot_state_publisher node
