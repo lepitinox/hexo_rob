@@ -12,16 +12,14 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        node_name='rviz2',
-        output='both',
+        name='rviz2',
     )
 
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        node_name='robot_state_publisher',
-        output='both',
+        name='robot_state_publisher',
         parameters=[{'robot_description': "/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/urdf/robot.urdf"}],
     )
 
