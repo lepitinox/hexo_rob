@@ -39,7 +39,7 @@ def generate_launch_description():
     with open(path, "r") as file:
         data = file.read()
 
-
+    cpm = Command("whoami")
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package="robot_state_publisher",
@@ -51,7 +51,7 @@ def generate_launch_description():
 
     # Describe the launch process
     ld = LaunchDescription(
-        [Command("whoami"),
+        [cpm,
             model_arg,
             robot_state_publisher,
             rviz_node,
