@@ -3,7 +3,7 @@ import os
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch_ros.actions import Node
+from launch_ros.actions import Node, ExecuteProcess
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 def generate_launch_description():
+
+
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -40,6 +42,10 @@ def generate_launch_description():
         data = file.read()
 
     cpm = Command("whoami")
+    ExecuteProcess(
+        cmd=cpm,
+        output='screen'
+    )
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package="robot_state_publisher",
@@ -51,7 +57,7 @@ def generate_launch_description():
 
     # Describe the launch process
     ld = LaunchDescription(
-        [cpm,
+        [
             model_arg,
             robot_state_publisher,
             rviz_node,
