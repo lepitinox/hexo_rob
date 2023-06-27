@@ -4,13 +4,6 @@
 
     <xacro:include filename="$(find rob_teleeop)/rob_teleeop/urdf/finger.urdf.xacro" />
     <xacro:property name="M_PI" value="3.14159"/>
-    <xacro:property name="baseMass" value="3.14159"/>
-    <xacro:property name="baseLength" value="3.14159"/>
-    <xacro:property name="baseWidth" value="3.14159"/>
-    <xacro:property name="baseHeight" value="3.14159"/>
-    <xacro:property name="chassisLength" value="3.14159"/>
-    <xacro:property name="lower_limit" value="3.14159"/>
-    <xacro:property name="upper_limit" value="3.14159"/>
 
     <link name="base_link">
         <visual>
@@ -67,18 +60,18 @@
 
     <!-- Macro finger -->
     <xacro:finger parent="palm_link" prefix="finger1" link="1" type="continuous">
-    <o  gin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
+    <origin xyz="0.015141 -0.034337 0.105315" rpy="-241.826 96.5038 0.105315" />
     </xacro:finger>
 
     <xacro:finger parent="finger1" prefix="finger2" link="2" type="continuous">
-    <ori    in xyz="-0.002487 0 0" rpy="9.00686 -0.124082 89.8118" />
+    <origin xyz="-0.002487 0 0" rpy="9.00686 -0.124082 89.8118" />
     </xacro:finger>
 
     <xacro:finger parent="finger2" prefix="finger3" link="3" type="continuous">
-    <or gin xyz="-0.040844 0.000126 0.00357" rpy="8.94359 0.091051 89.9831" />
+    <origin xyz="-0.040844 0.000126 0.00357" rpy="8.94359 0.091051 89.9831" />
     </xacro:finger>
 
     <xacro:finger parent="finger3" prefix="finger4" link="4" type="continuous">
-        rigin xyz="-0.029121 0.000013 0.002736" rpy="11.2847 -0.04374 89.947" />
+     <origin xyz="-0.029121 0.000013 0.002736" rpy="11.2847 -0.04374 89.947" />
     </xacro:finger>
 </robot>
