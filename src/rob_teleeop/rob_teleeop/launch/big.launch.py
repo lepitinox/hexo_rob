@@ -24,9 +24,7 @@ def generate_launch_description():
         ],
     )
 
-    robot_description_content = Command(
-        [PathJoinSubstitution([FindPackageShare("rob_teleeop"), "base.urdf.xacro"])]
-    )
+
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf.xacro"
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
 
@@ -35,7 +33,7 @@ def generate_launch_description():
                                       description='Absolute path to robot urdf file')
     
     
-    robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
+    robot_description = ParameterValue(Command(['urdf ', LaunchConfiguration('model')]),
                                        value_type=str)
 
 
