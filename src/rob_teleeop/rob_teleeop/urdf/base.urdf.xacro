@@ -2,21 +2,21 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rob_teleeop">
     <xacro:arg name="gazebo" default="false"/>
 
-    <xacro:include filename="$(find rob_teleeop)/urdf/finger.urdf.xacro" />
+    <xacro:include filename="$(find rob_teleeop)/finger.urdf.xacro" />
     <xacro:property name="M_PI" value="3.14159"/>
 
     <link name="base_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
+                <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_base.stl" scale="1 1 1"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_base.stl" scale="1 1 1"/>
+                <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_base.stl" scale="1 1 1"/>
             </geometry>
         </collision>
         <!-- Add definition for all missing variable -->
@@ -26,14 +26,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
+                <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_palm.stl" scale="1 1 1"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0.123" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_palm.stl" scale="1 1 1"/>
+                <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_palm.stl" scale="1 1 1"/>
             </geometry>
         </collision>
     </link>
