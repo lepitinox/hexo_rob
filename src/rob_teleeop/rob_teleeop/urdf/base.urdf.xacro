@@ -48,6 +48,6 @@
     </joint>
 
     <!-- Macro finger -->
- <xacro:ff base_ref="palm_link" nb="1"/>
-
+ <xacro:ff base_ref="palm_link" nb="1" p1="0 0.02 0.02" p2="0 0 0.02" p3="0 0 0.02" p4= "0 0 0.02"/>
+ <xacro:ff base_ref="palm_link" nb="2" p1="0 -0.02 0.02" p2="0 0 0.02" p3="0 0 0.02" p4= "0 0 0.02"/>
 </robot>
