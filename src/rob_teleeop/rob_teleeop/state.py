@@ -45,12 +45,13 @@ class StatePublisher(Node):
                 joint_state.header.stamp = now.to_msg()
                 joint_state.name = ['handle_joint']+[f"finger{i}_joint"for i in range(4)]
                 joint_state.position = [a]+[0.0 for i in range(4)]
-                if a > 10:
+                if a > 1:
                     b = -0.1
-                elif a < -10:
+                elif a < -1:
                     b = 0.1
                 else:
                     a += b
+                
                 # update transform
                 # (moving in a circle with radius=2)
                 #odom_trans.header.stamp = now.to_msg()
