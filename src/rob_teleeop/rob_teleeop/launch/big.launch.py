@@ -47,12 +47,20 @@ def generate_launch_description():
         parameters=[{"robot_description": robot_description}],
     )
 
+    custom_state_publisher = Node(
+        package="rob_teleeop",
+        executable="main",
+        name="custom_state_publisher",
+        output="screen",
+    )
+
     # Describe the launch process
     ld = LaunchDescription(
         [
             model_arg,
             robot_state_publisher,
             rviz_node,
+            custom_state_publisher,
         ]
     )
 
