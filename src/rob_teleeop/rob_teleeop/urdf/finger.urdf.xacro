@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
-    <xacro:macro name="finger" params="parent prefix link joint_type xyz rpy">
+    <xacro:macro name="finger" params="parent prefix link joint_type xyz rpy rot">
         <link name="${prefix}_link" >
             <visual>
-                <origin xyz="0 0 0" rpy="0 0 1.57"/>
+                <origin xyz="0 0 0" rpy="${rot}"/>
                 <geometry>
                     <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
                 </geometry>
