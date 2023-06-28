@@ -12,7 +12,7 @@
         <joint name="${prefix}_joint" type="${joint_type}">
             <origin xyz="${xyz}" rpy="${rpy}" />
             <axis xyz="${axis}"/>
-            <limit effort="0" velocity="0" lower="0" upper="50" />
+            <limit effort="0" velocity="0" lower="0" upper="1.57" />
             <parent link="${parent}"/>
             <child link="${prefix}_link"/>
         </joint>
