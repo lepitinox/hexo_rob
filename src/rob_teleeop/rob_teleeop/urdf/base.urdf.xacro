@@ -24,7 +24,7 @@
     <!-- Palm link -->
     <link name="palm_link">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0.132" rpy="0 0 0"/>
             <geometry>
                 <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_palm.stl" scale="1 1 1"/>
             </geometry>
@@ -42,12 +42,12 @@
     <joint name="handle_joint" type="revolute">
         <axis xyz="1 0 0" />
         <limit effort="0" velocity="0" lower="0" upper="50" />
-        <origin xyz="0 0 0.132" rpy="0 0 0" />
+        <origin xyz="0 0 0.10" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="palm_link" />
     </joint>
 
     <!-- Macro finger -->
- <xacro:ff base_ref="palm_link" nb="1" p1="0 -0.01 0.15" p2="0 0 0.0026" p3="0.00357 0.000126 0.000126" p4= "0.006306 0.000139 0.029247"/>
+ <xacro:ff base_ref="palm_link" nb="1" p1="0 -0.01 0.15" p2="0 0 0.0026" p3="0.00357 0.000126 0.000126" p4="0.006306 0.000139 0.029247"/>
  <xacro:ff base_ref="palm_link" nb="2" p1="0 0.2 0.02" p2="0 0 0.02" p3="0 0 0.02" p4= "0 0 0.02"/>
 </robot>
