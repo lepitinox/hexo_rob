@@ -55,5 +55,5 @@
 
     <xacro:finger parent="finger2_link" prefix="finger3" link="3" joint_type="fixed" xyz="-0.040844 0.000126 0.00357" rpy="${(8.94359 / 160) * M_PI} ${(0.091051 / 160) * M_PI} ${(89.9831 / 160) * M_PI }" rot = "0 -1.57 1.57"/>
 
-    <xacro:finger parent="finger3_link" prefix="finger4" link="4" joint_type="fixed" xyz="-0.029121 0.000013 0.002736" rpy="${(11.2847 / 160) * M_PI} ${(-0.04374 / 160) * M_PI} ${(89.947 / 160) * M_PI}" rot="0 0 0"/>
+    <xacro:finger parent="finger3_link" prefix="finger4" link="4" joint_type="fixed" xyz="-0.029121 0.000013 0.002736" rpy="${(11.2847 / 160) * M_PI} ${(-0.04374 / 160) * M_PI} ${(89.947 / 160) * M_PI}" rot="0 1.57 -1.57"/>
 </robot>
