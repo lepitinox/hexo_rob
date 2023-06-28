@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
     <xacro:macro name="finger" params="parent nb link joint_type xyz rpy rot axis">
-        <link name="finger${nb}_link{link}" >
+        <link name="finger${nb}_link${link}" >
             <visual>
                 <origin xyz="0 0 0" rpy="${rot}"/>
                 <geometry>
@@ -9,12 +9,12 @@
                 </geometry>
             </visual>
         </link>
-        <joint name="finger${nb}_joint{link}" type="${joint_type}">
+        <joint name="finger${nb}_joint${link}" type="${joint_type}">
             <origin xyz="${xyz}" rpy="${rpy}" />
             <axis xyz="${axis}"/>
             <limit effort="0" velocity="0" lower="-100" upper="100" />
             <parent link="${parent}"/>
-            <child link="finger${nb}_link{link}"/>
+            <child link="finger${nb}_link${link}"/>
         </joint>
     </xacro:macro>
 </robot>
