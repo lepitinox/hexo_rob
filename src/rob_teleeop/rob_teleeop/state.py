@@ -31,6 +31,8 @@ class StatePublisher(Node):
 
         # message declarations
         odom_trans = TransformStamped()
+        odom_trans.header.frame_id = 'odom'
+        odom_trans.child_frame_id = 'axis'
         joint_state = JointState()
         a = 0
         try:
