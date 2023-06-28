@@ -10,7 +10,7 @@
             </visual>
         </link>
         <joint name="${prefix}_joint" type="${joint_type}">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="${xyz}" rpy="${rpy}" />
             <parent link="${parent}"/>
             <child link="${prefix}_link"/>
         </joint>
