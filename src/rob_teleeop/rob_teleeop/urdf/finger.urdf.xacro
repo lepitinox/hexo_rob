@@ -3,8 +3,8 @@
     <xacro:macro name="finger" params="parent prefix link joint_type xyz rpy">
         <link name="${prefix}_link" >
             <visual>
+                <origin xyz="${xyz}" rpy="${rpy}" />
                 <geometry>
-                    <origin xyz="${xyz}" rpy="${rpy}" />
                     <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
                 </geometry>
             </visual>
