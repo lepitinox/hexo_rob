@@ -5,7 +5,7 @@
             <visual>
                 <origin xyz="${xyz}" rpy="${rpy}" />
                 <geometry>
-                    <mesh filename="file:///$(find rob_teleeop)q/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
+                    <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
                 </geometry>
             </visual>
         </link>
