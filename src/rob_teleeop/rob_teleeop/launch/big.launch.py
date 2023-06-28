@@ -34,7 +34,7 @@ def generate_launch_description():
                                       description='Absolute path to robot urdf file')
     
     
-    robot_description = ParameterValue(Command([LaunchConfiguration('model')]),
+    robot_description = ParameterValue(Command(["xacro ",LaunchConfiguration('model')]),
                                        value_type=str)
 
 
