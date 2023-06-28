@@ -49,4 +49,5 @@
 
     <!-- Macro finger -->
  <xacro:ff base_ref="palm_link" nb="1"/>
+ <xacro:ff base_ref="palm_link" nb="2"/>
 </robot>
