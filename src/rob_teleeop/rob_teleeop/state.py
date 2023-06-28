@@ -46,6 +46,7 @@ class StatePublisher(Node):
                 joint_state.position = [0.0]+[0.0 for i in range(5)]
                 joint_state.position[-1] = -1.0
                 joint_state.position[-2] = -1.0
+                joint_state.position[-3] = -1.0
 
 
                 
