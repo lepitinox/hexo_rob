@@ -6,6 +6,41 @@ from geometry_msgs.msg import Quaternion
 from sensor_msgs.msg import JointState
 from tf2_ros import TransformBroadcaster, TransformStamped
 
+
+class FingerController:
+    """
+    FingerController is a class that controls the finger
+    config :
+    {
+        "finger1_joint1":{"axis":1,"min":-1,"max":1},
+        ...
+    }
+    have a function to get the data for the joint
+    """
+    def __init__(self, config) -> None:
+        self.config = config
+
+
+    def get_date(self):
+        pass
+
+
+class HandController:
+    """
+    HandController is a class that controls the hand
+    config :
+    {
+        "finger1":{
+        "finger1_joint1":{"axis":1,"min":-1,"max":1},
+        ...
+    },
+     """
+    def __init__(self, pub, config) -> None:
+        self.config = config
+        # create finger from 1 to 5
+        self.fingers = [FingerController(config[f"finger{i}"]) for i in range(1,6)]
+      
+
 class StatePublisher(Node):
 
     def __init__(self):
@@ -42,11 +77,12 @@ class StatePublisher(Node):
                 # update joint_state
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(5)]
-                joint_state.position = [0.0]+[0.0 for i in range(5)]
+                joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(4)]
+                joint_state.position = [0.0]+[0.0 for i in range(4)]
                 joint_state.position[-1] = -1.0
                 joint_state.position[-2] = -1.0
-                joint_state.position[-3] = -1.0
+ 
+
 
 
                 
