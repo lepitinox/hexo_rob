@@ -48,7 +48,7 @@
     </joint>
 
     <!-- Macro finger -->
-    <xacro:finger parent="palm_link" prefix="finger1" link="1" joint_type="revolute" xyz="0.015141 -0.034337 0.105315" rpy="-4.22 1.68 5.35" rot="0 0 1.57" axis = "0 0 1"/>
+    <xacro:finger parent="palm_link" prefix="finger1" link="1" joint_type="revolute" xyz="0.015141 -0.034337 0.105315" rpy="-4.22 1.68 5.35" rot="0 0 1.57" axis = "1 0 0"/>
 
     <xacro:finger parent="finger1_link" prefix="finger2" link="2" joint_type="revolute" xyz="-0.002487 0 0" rpy="${0.157} ${-0.002-1.57} 1.567" rot="0 -1.57 1.57" axis = "0 0 1"/>
 
