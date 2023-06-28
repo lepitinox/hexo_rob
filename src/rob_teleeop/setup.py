@@ -25,7 +25,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'teleeop = rob_teleeop.teleeop:main',
+        "main = rob_teleeop.main:main"
+        'teleeop = rob_teleeop.rob_teleeop:main',
         'big_launch = rob_teleeop.big_launch:main',
         ],
     },
