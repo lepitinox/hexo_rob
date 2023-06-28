@@ -51,7 +51,7 @@
     <xacro:finger parent="palm_link" prefix="finger1" link="1" joint_type="fixed" xyz="0.015141 -0.034337 0.105315" rpy="-4.22 1.68 5.35" rot="0 0 0"/>
     same but rpy in radian using M_PI as pi and 
 
-    <xacro:finger parent="finger1_link" prefix="finger2" link="2" joint_type="fixed" xyz="-0.002487 0 0" rpy="1.657 -0.002 1.567" rot="0 0 0"/>
+    <xacro:finger parent="finger1_link" prefix="finger2" link="2" joint_type="fixed" xyz="-0.002487 0 0" rpy="${0.157 - 1.57} -0.002 1.567" rot="0 0 0"/>
 
     <xacro:finger parent="finger2_link" prefix="finger3" link="3" joint_type="fixed" xyz="-0.040844 0.000126 0.00357" rpy="${(8.94359 / 160) * M_PI} ${(0.091051 / 160) * M_PI} ${(89.9831 / 160) * M_PI}" rot = "0 0 0"/>
 
