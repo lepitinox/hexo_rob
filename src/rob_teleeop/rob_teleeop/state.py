@@ -49,8 +49,8 @@ class StatePublisher(Node):
                     b = -0.1
                 elif a < -1:
                     b = 0.1
-                else:
-                    a += b
+
+                a += b
                 
                 # update transform
                 # (moving in a circle with radius=2)
