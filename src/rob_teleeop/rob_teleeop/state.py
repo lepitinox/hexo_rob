@@ -70,6 +70,11 @@ class StatePublisher(Node):
         odom_trans.child_frame_id = 'axis'
         joint_state = JointState()
         a = 0
+
+        joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(5)]
+        joint_state.position = [0.0]+[0.0 for i in range(5)]
+        self.joint_pub.publish(joint_state)
+        
         try:
             while rclpy.ok():
                 rclpy.spin_once(self)
