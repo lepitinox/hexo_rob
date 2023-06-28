@@ -38,13 +38,6 @@ def generate_launch_description():
                                        value_type=str)
 
 
-    with open(path, "r") as file:
-        data = file.read()
-
-    ExecuteProcess(
-        cmd=["whoami"],
-        output='screen'
-    )
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
         package="robot_state_publisher",
