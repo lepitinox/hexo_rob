@@ -27,7 +27,7 @@ def generate_launch_description():
     )
 
     path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/base.urdf.xacro"
-    path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
+    #path = "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/urdf/test.urdf"
 
 
     model_arg = DeclareLaunchArgument(name='model', default_value=str(path),
