@@ -43,7 +43,7 @@ class StatePublisher(Node):
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
                 joint_state.name = ['handle_joint']+[f"finger{i}_joint"for i in range(5)]
-                joint_state.position = [0,1.57]+[-1 for i in range(1,5)]
+                joint_state.position = [0.0]+[0.0 for i in range(5)]
 
 
                 
