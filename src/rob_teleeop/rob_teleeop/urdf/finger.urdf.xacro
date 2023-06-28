@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
-    <xacro:macro name="finger" params="parent prefix link joint_type">
+    <xacro:macro name="finger" params="parent prefix link joint_type xyz rpy">
         <link name="${prefix}_link" >
             <visual>
                 <geometry>
