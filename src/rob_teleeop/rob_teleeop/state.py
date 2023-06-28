@@ -14,7 +14,6 @@ class StatePublisher(Node):
 
         qos_profile = QoSProfile(depth=10)
         self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
-        self.broadcaster = TransformBroadcaster(self, qos=qos_profile)
         self.nodeName = self.get_name()
         self.get_logger().info("{0} started".format(self.nodeName))
 
@@ -50,7 +49,7 @@ class StatePublisher(Node):
                 elif a < -1:
                     b = 0.1
 
-                #a += b
+                a += b
                 
                 # update transform
                 # (moving in a circle with radius=2)
@@ -63,17 +62,6 @@ class StatePublisher(Node):
 
                 # send the joint state and transform
                 self.joint_pub.publish(joint_state)
-                self.broadcaster.sendTransform(odom_trans)
-
-                # Create new robot state
-                tilt += tinc
-                if tilt < -0.5 or tilt > 0.0:
-                    tinc *= -1
-                height += hinc
-                if height > 0.2 or height < 0.0:
-                    hinc *= -1
-                swivel += degree
-                angle += degree/4
 
                 # This will adjust as needed per iteration
                 loop_rate.sleep()
