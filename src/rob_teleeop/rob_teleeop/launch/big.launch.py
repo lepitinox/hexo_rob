@@ -49,7 +49,7 @@ def generate_launch_description():
 
     custom_state_publisher = Node(
         package="rob_teleeop",
-        executable="main",
+        executable="teleeop",
         name="custom_state_publisher",
         output="screen",
     )
