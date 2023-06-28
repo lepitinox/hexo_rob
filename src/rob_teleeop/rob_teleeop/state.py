@@ -28,6 +28,7 @@ class StatePublisher(Node):
         angle = 0.
         height = 0.
         hinc = 0.005
+        b = 0.1
 
         # message declarations
         odom_trans = TransformStamped()
