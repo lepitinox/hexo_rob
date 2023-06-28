@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ff">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="rob_teleeop">
     <xacro:include filename="$(find rob_teleeop)/finger.urdf.xacro" />
     <xacro:macro name="ff" params="base_ref nb">
     <xacro:finger parent="${base_ref}" nb="${nb}" link="1" joint_type="revolute" xyz="0.015141 -0.034337 0.105315" rpy="-4.22 1.68 5.35" rot="0 0 1.57" axis = "1 0 0"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="rob_teleeop">
     <xacro:macro name="finger" params="parent nb link joint_type xyz rpy rot axis">
         <link name="finger${nb}_link${link}" >
             <visual>
