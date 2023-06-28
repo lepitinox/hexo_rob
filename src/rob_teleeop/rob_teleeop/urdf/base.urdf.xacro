@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rob_teleeop">
     <xacro:arg name="gazebo" default="false"/>
 
-    <xacro:include filename="$(find rob_teleeop)/finger.urdf.xacro" />
+    <xacro:include filename="$(find rob_teleeop)/ff.urdf.xacro" />
     <xacro:property name="M_PI" value="3.14159"/>
 
     <link name="base_link">
@@ -48,11 +48,5 @@
     </joint>
 
     <!-- Macro finger -->
-    <xacro:finger parent="palm_link" prefix="finger1" link="1" joint_type="revolute" xyz="0.015141 -0.034337 0.105315" rpy="-4.22 1.68 5.35" rot="0 0 1.57" axis = "1 0 0"/>
-
-    <xacro:finger parent="finger1_link" prefix="finger2" link="2" joint_type="revolute" xyz="-0.002487 0 0" rpy="${0.157} ${-0.002-1.57} 1.567" rot="0 -1.57 1.57" axis = "0 0 1"/>
-
-    <xacro:finger parent="finger2_link" prefix="finger3" link="3" joint_type="revolute" xyz="-0.040844 0.000126 0.00357" rpy="${(8.94359 / 160) * M_PI} ${(0.091051 / 160) * M_PI} ${(89.9831 / 160) * M_PI }" rot = "0 -1.57 1.57" axis = "0 0 1"/>
-
-    <xacro:finger parent="finger3_link" prefix="finger4" link="4" joint_type="revolute" xyz="-0.029121 0.000013 0.002736" rpy="${(11.2847 / 160) * M_PI} ${(-0.04374 / 160) * M_PI} ${(89.947 / 160) * M_PI}" rot="0 -1.57 1.57" axis = "0 0 1"/>
+ <xacro:ff base_ref="palm_link" nb="1"/>
 </robot>

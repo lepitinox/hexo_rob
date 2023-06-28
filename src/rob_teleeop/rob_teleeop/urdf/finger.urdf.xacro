@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="finger">
-    <xacro:macro name="finger" params="parent prefix link joint_type xyz rpy rot axis">
-        <link name="${prefix}_link" >
+    <xacro:macro name="finger" params="parent nb prefix link joint_type xyz rpy rot axis">
+        <link name="finger${nb}_link{link}" >
             <visual>
                 <origin xyz="0 0 0" rpy="${rot}"/>
                 <geometry>
-                    <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
+                    <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger${nb}_link${link}.stl" scale="1 1 1"/>
                 </geometry>
             </visual>
         </link>
-        <joint name="${prefix}_joint" type="${joint_type}">
+        <joint name="finger${nb}_joint{link}" type="${joint_type}">
             <origin xyz="${xyz}" rpy="${rpy}" />
             <axis xyz="${axis}"/>
             <limit effort="0" velocity="0" lower="-100" upper="100" />
             <parent link="${parent}"/>
-            <child link="${prefix}_link"/>
+            <child link="finger${nb}_link{link}"/>
         </joint>
     </xacro:macro>
 </robot>
