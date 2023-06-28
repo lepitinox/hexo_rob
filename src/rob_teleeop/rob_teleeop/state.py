@@ -7,39 +7,19 @@ from sensor_msgs.msg import JointState
 from tf2_ros import TransformBroadcaster, TransformStamped
 
 
-class FingerController:
+class UpdateHand:
     """
-    FingerController is a class that controls the finger
-    config :
-    {
-        "finger1_joint1":{"axis":1,"min":-1,"max":1},
+    config = {
+        "finger1_joint1": 0.0,
+        "finger1_joint2": 0.0,
+        "finger1_joint3": 0.0,
+        "finger1_joint4": 0.0,
+        "finger2_joint1": 0.0,
         ...
-    }
-    have a function to get the data for the joint
     """
     def __init__(self, config) -> None:
-        self.config = config
-
-
-    def get_date(self):
         pass
 
-
-class HandController:
-    """
-    HandController is a class that controls the hand
-    config :
-    {
-        "finger1":{
-        "finger1_joint1":{"axis":1,"min":-1,"max":1},
-        ...
-    },
-     """
-    def __init__(self, pub, config) -> None:
-        self.config = config
-        # create finger from 1 to 5
-        self.fingers = [FingerController(config[f"finger{i}"]) for i in range(1,6)]
-      
 
 class StatePublisher(Node):
 
@@ -55,26 +35,9 @@ class StatePublisher(Node):
         degree = pi / 180.0
         loop_rate = self.create_rate(30)
 
-        # robot state
-        tilt = 0.
-        tinc = degree
-        swivel = 0.
-        angle = 0.
-        height = 0.
-        hinc = 0.005
-        b = 0.1
-
-        # message declarations
-        odom_trans = TransformStamped()
-        odom_trans.header.frame_id = 'odom'
-        odom_trans.child_frame_id = 'axis'
         joint_state = JointState()
         a = 0
 
-        joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(5)]
-        joint_state.position = [0.0]+[0.0 for i in range(5)]
-        self.joint_pub.publish(joint_state)
-        
         try:
             while rclpy.ok():
                 rclpy.spin_once(self)
@@ -82,39 +45,17 @@ class StatePublisher(Node):
                 # update joint_state
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(4)]
-                joint_state.position = [0.0]+[0.0 for i in range(4)]
+                joint_state.name = ['handle_joint']+[f"finger1_joint{i}"for i in range(5)]
+                joint_state.position = [0.0]+[0.0 for i in range(5)]
                 joint_state.position[-1] = -1.0
                 joint_state.position[-2] = -1.0
- 
 
 
-
-                
-                # update transform
-                # (moving in a circle with radius=2)
-                #odom_trans.header.stamp = now.to_msg()
-                #odom_trans.transform.translation.x = cos(angle)*2
-               # odom_trans.transform.translation.y = sin(angle)*2
-                #odom_trans.transform.translation.z = 0.7
-                #odom_trans.transform.rotation = \
-                #    euler_to_quaternion(0, 0, angle + pi/2) # roll,pitch,yaw
-
-                # send the joint state and transform
                 self.joint_pub.publish(joint_state)
-
-                # This will adjust as needed per iteration
                 loop_rate.sleep()
 
         except KeyboardInterrupt:
             pass
-
-def euler_to_quaternion(roll, pitch, yaw):
-    qx = sin(roll/2) * cos(pitch/2) * cos(yaw/2) - cos(roll/2) * sin(pitch/2) * sin(yaw/2)
-    qy = cos(roll/2) * sin(pitch/2) * cos(yaw/2) + sin(roll/2) * cos(pitch/2) * sin(yaw/2)
-    qz = cos(roll/2) * cos(pitch/2) * sin(yaw/2) - sin(roll/2) * sin(pitch/2) * cos(yaw/2)
-    qw = cos(roll/2) * cos(pitch/2) * cos(yaw/2) + sin(roll/2) * sin(pitch/2) * sin(yaw/2)
-    return Quaternion(x=qx, y=qy, z=qz, w=qw)
 
 def main():
     node = StatePublisher()
