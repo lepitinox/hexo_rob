@@ -38,7 +38,7 @@
     </link>
 
     <!-- Palm joint -->
-    <joint name="my_joint" type="revolute">
+    <joint name="handle_joint" type="revolute">
         <axis xyz="1 0 0" />
         <limit effort="0" velocity="0" lower="0" upper="50" />
         <origin xyz="0 0 0.10" rpy="0 0 0" />

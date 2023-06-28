@@ -42,17 +42,17 @@ class StatePublisher(Node):
                 # update joint_state
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['swivel', 'tilt', 'periscope']
-                joint_state.position = [swivel, tilt, height]
+                joint_state.name = ['handle_joint']+[f"finger{i}_joint"for i in range(4)]
+                joint_state.position = [0.0 for _ in joint_state.name]
 
                 # update transform
                 # (moving in a circle with radius=2)
-                odom_trans.header.stamp = now.to_msg()
-                odom_trans.transform.translation.x = cos(angle)*2
-                odom_trans.transform.translation.y = sin(angle)*2
-                odom_trans.transform.translation.z = 0.7
-                odom_trans.transform.rotation = \
-                    euler_to_quaternion(0, 0, angle + pi/2) # roll,pitch,yaw
+                #odom_trans.header.stamp = now.to_msg()
+                #odom_trans.transform.translation.x = cos(angle)*2
+               # odom_trans.transform.translation.y = sin(angle)*2
+                #odom_trans.transform.translation.z = 0.7
+                #odom_trans.transform.rotation = \
+                #    euler_to_quaternion(0, 0, angle + pi/2) # roll,pitch,yaw
 
                 # send the joint state and transform
                 self.joint_pub.publish(joint_state)
