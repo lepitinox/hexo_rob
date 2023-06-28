@@ -4,11 +4,13 @@
         <link name="${prefix}_link" >
             <visual>
                 <geometry>
+                    <origin xyz="${xyz}" rpy="${rpy}" />
                     <mesh filename="file:///$(find rob_teleeop)/models/robot_nano_hand_finger1_link${link}.stl" scale="1 1 1"/>
                 </geometry>
             </visual>
         </link>
         <joint name="${prefix}_joint" type="${joint_type}">
+            <origin xyz="${xyz}" rpy="${rpy}" />
             <parent link="${parent}"/>
             <child link="${prefix}_link"/>
         </joint>
