@@ -43,13 +43,9 @@ class StatePublisher(Node):
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
                 joint_state.name = ['handle_joint']+[f"finger{i}_joint"for i in range(5)]
-                joint_state.position = [a]+[a-1 for i in range(5)]
-                if a > 1:
-                    b = -0.01
-                elif a < -1:
-                    b = 0.01
+                joint_state.position = [0]+[1.57 for i in range(5)]
 
-                a += b
+
                 
                 # update transform
                 # (moving in a circle with radius=2)
