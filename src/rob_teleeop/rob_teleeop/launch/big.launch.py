@@ -21,7 +21,7 @@ def generate_launch_description():
         output="screen",
         arguments=[
             "-d",
-            "/home/ubuntu/rob/src/rob_teleeop/rob_teleeop/config/big.rviz",
+            "/home/ubuntu/hexo_rob/src/rob_teleeop/rob_teleeop/config/big.rviz",
         ],
     )
 
