@@ -47,8 +47,8 @@ class StatePublisher(Node):
                 joint_state.header.stamp = now.to_msg()
                 joint_state.name = ['handle_joint']
                 joint_state.position = [0.0]
-                for i in range(1, 6):
-                    for j in range(1, 6):
+                for i in range(1, 5):
+                    for j in range(1, 5):
                         joint_state.name.append('finger{}_joint{}'.format(i, j))
                         joint_state.position.append(0.0)
 
