@@ -52,7 +52,10 @@ class StatePublisher(Node):
                 for i in range(1, 6):
                     for j in range(1, 5):
                         joint_state.name.append('finger{}_joint{}'.format(i, j))
-                        joint_state.position.append(a)
+                        if j == 1:
+                            joint_state.position.append(0.0)
+                        else:
+                            joint_state.position.append(a)
                 if a > 1:
                     b = -0.01
                 elif a < -1:
