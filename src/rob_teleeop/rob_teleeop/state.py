@@ -37,7 +37,7 @@ class StatePublisher(Node):
 
         joint_state = JointState()
         a = 0
-        b = -0.01
+        b = 0.01
 
 
         try:
@@ -56,9 +56,9 @@ class StatePublisher(Node):
                             joint_state.position.append(0.0)
                         else:
                             joint_state.position.append(a)
-                if a > 0:
+                if a > 1:
                     b = -0.01
-                elif a < -1:
+                elif a < 0:
                     b = 0.01
                 a += b
 
