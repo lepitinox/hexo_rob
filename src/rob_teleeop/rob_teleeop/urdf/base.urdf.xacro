@@ -7,7 +7,7 @@
 
     <link name="base_link">
         <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
             <geometry>
                 <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_base.stl" scale="1 1 1"/>
             </geometry>
@@ -24,7 +24,7 @@
     <!-- Palm link -->
     <link name="palm_link">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 0 1.57"/>
             <geometry>
                 <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_palm.stl" scale="1 1 1"/>
             </geometry>
