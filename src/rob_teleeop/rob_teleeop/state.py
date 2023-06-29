@@ -38,6 +38,7 @@ class StatePublisher(Node):
         joint_state = JointState()
         a = 0
 
+
         try:
             while rclpy.ok():
                 rclpy.spin_once(self)
@@ -50,7 +51,13 @@ class StatePublisher(Node):
                 for i in range(1, 6):
                     for j in range(1, 5):
                         joint_state.name.append('finger{}_joint{}'.format(i, j))
-                        joint_state.position.append(0.0)
+                        joint_state.position.append(a)
+                if a > 1:
+                    b = -0.01
+                elif a < -1:
+                    b = 0.01
+                a += b
+
 
 
                 self.joint_pub.publish(joint_state)
