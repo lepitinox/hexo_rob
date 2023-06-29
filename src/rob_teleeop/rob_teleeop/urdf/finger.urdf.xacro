@@ -8,6 +8,12 @@
                     <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger${nb}_link${link}.stl" scale="1 1 1"/>
                 </geometry>
             </visual>
+            <collision>
+            <origin xyz="0 0 0" rpy="${rot}"/>
+            <geometry>
+                <mesh filename="file:///$(find rob_teleeop)/robot_nano_hand_finger${nb}_link${link}.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
         </link>
         <joint name="finger${nb}_joint${link}" type="${joint_type}">
             <origin xyz="${xyz}" rpy="${rpy}" />
