@@ -37,6 +37,7 @@ class StatePublisher(Node):
 
         joint_state = JointState()
         a = 0
+        b = 0.01
 
 
         try:
