@@ -25,8 +25,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'state = rob_teleeop.state:main'
-            'hand_inf = rob_teleeop.hand_inf:main'
+            'state = rob_teleeop.state:main',
+            'hand_inf = rob_teleeop.hand_inf:main',
             "hand_train_vnn = rob_teleeop.hand_train_vnn:main"
         ],
     },
