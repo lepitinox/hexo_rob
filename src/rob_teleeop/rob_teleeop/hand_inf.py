@@ -18,9 +18,13 @@ class HandInf(Node):
     share_path = Path(get_package_share_directory('rob_teleeop'))
 
     def __init__(self):
+        rclpy.init()
+        super().__init__('state_publisher')
         self.model = keras.models.load_model(self.share_path/'hand_sign_model.h5')
         # subscribe to the hand image topic
         self.hand_sub = self.create_subscription(Image, 'hand_image', self.hand_callback, 10)
+
+        rclpy.spin(self)
 
     
     def hand_callback(self, msg):
@@ -36,13 +40,7 @@ class HandInf(Node):
         print(pred_class)
 
 def main():
-    # create the node
-    rclpy.init()
     node = HandInf()
-    # spin the node
-    rclpy.spin()
-    # destroy the node
-    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
