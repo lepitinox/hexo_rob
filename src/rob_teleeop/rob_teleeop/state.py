@@ -72,10 +72,8 @@ class StatePublisher(Node):
 
     def __init__(self):
 
-        rclpy.init()
         super().__init__('state_publisher')
-
-        qos_profile = QoSProfile(depth=10)
+        qos_profile = QoSProfile(depth=200)
         self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
         self.nodeName = self.get_name()
         self.get_logger().info("{0} started".format(self.nodeName))
@@ -95,9 +93,10 @@ class StatePublisher(Node):
         rclpy.spin_once(self)
 
 def main():
-
+    rclpy.init()
     node = StatePublisher()
     rclpy.spin(node)
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
