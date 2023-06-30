@@ -29,13 +29,12 @@ class UpdateHand:
         self._joint_state = JointState()
 
 
-    def move_to_class(self, class_nb):
-        self.move_to(TO_POSITION_CLASS[class_nb])
+    def move_to_class(self, class_nb,now):
+        self.move_to(TO_POSITION_CLASS[int(class_nb)],now)
         
     
-    def move_to(self, config):
+    def move_to(self, config,now):
         self._joint_state = JointState()
-        now = self.get_clock().now()
         self._joint_state.header.stamp = now.to_msg()
         self._joint_state.name = [
             "handle_joint",
@@ -80,12 +79,14 @@ class StatePublisher(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
         self.sub = self.create_subscription(Int32, 'hand_class', self.joint_callback, qos_profile)
         self.oklol = UpdateHand(self.joint_pub)
-        self.oklol.move_to(INIT)
+        now = self.get_clock().now()
+        self.oklol.move_to(INIT, now)
 
 
     def joint_callback(self, msg):
+        now = self.get_clock().now()
         class_nb = msg.data
-        self.oklol.move_to_class(class_nb)
+        self.oklol.move_to_class(class_nb, now)
 
 def main():
     node = StatePublisher()
