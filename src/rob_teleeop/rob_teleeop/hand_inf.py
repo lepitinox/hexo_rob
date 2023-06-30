@@ -43,7 +43,6 @@ class HandInf(Node):
         # log the shape of the image
         # convert the image to a numpy array
         img = np.array(img)
-        tmp = img.copy()
         # log the shape of the image
         # reshape the image to 1x28x28x1
         img = img.reshape(1, 28, 28, 1)
@@ -59,13 +58,6 @@ class HandInf(Node):
         self.get_logger().info(f'Predicted class: {pred_class}')
         sz = (msg.height, msg.width)
         # print(msg.header.stamp)
-        if False:
-            print('{encoding} {width} {height} {step} {data_size}'.format(
-                encoding=msg.encoding, width=msg.width, height=msg.height,
-                step=msg.step, data_size=len(msg.data)))
-        if msg.step * msg.height != len(msg.data):
-            print('bad step/height/data size')
-            return
 
         if msg.encoding == 'rgb8':
             dirty = (self.mat is None or msg.width != self.mat.shape[1] or
@@ -82,8 +74,9 @@ class HandInf(Node):
             print('unsupported encoding {}'.format(msg.encoding))
             return
         if self.mat is not None:
-            self.get_logger().info(f'dZsqd clqsdasqds: {tmp.shape}')
-            cv2.imshow('image', tmp)
+            # cast to uint8 and reshape
+            img = img.astype(np.uint8)
+            cv2.imshow('image', img)
             cv2.waitKey(5)
 
 
