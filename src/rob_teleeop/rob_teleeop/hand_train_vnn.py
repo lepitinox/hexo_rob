@@ -23,6 +23,8 @@ y_train = np.array(train_df.iloc[:, 0])
 X_test = np.array(test_df.iloc[:, 1:]).reshape(-1, 28, 28, 1)
 y_test = np.array(test_df.iloc[:, 0])
 
+print(X_train.shape)
+
 input_shape = (28, 28, 1)
 
 model = keras.Sequential()
