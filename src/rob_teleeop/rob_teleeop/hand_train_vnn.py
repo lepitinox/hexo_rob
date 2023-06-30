@@ -14,9 +14,7 @@ import rclpy
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('hand_inf')
-    rclpy.spin(node)
-    rclpy.shutdown()
-    
+
     share_path = Path(get_package_share_directory('rob_teleeop'))
 
     train_df = pd.read_csv(share_path/'sign_mnist_train.csv')
@@ -49,6 +47,9 @@ def main(args=None):
     model.fit(x=X_train, y=y_train, validation_data=(X_test, y_test),epochs=25, callbacks=[early_stop])
 
     model.save(share_path/'hand_sign_model.h5')
+    rclpy.spin(node)
+    rclpy.shutdown()
+    
 
 if __name__ == '__main__':
     main()
