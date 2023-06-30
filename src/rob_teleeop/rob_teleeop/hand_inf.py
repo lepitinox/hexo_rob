@@ -42,6 +42,10 @@ class HandInf(Node):
         img = tf.image.rgb_to_grayscale(img)
         # log the shape of the image
         self.get_logger().info(f"Image shape3: {img.shape}")
+        # convert the image to a numpy array
+        img = np.array(img)
+        # log the shape of the image
+        self.get_logger().info(f"Image shape4: {img.shape}")
         # do the prediction
         pred = self.model.predict(img)
         # get the predicted class
