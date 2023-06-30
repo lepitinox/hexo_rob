@@ -70,7 +70,7 @@ class StatePublisher(Node):
 
     def __init__(self):
 
-        rclpy.init()
+        
         super().__init__('state_publisher')
 
         qos_profile = QoSProfile(depth=10)
@@ -81,7 +81,7 @@ class StatePublisher(Node):
         self.oklol = UpdateHand(self.joint_pub)
         now = self.get_clock().now()
         self.oklol.move_to(INIT, now)
-        rclpy.spin(self)
+        
 
 
     def joint_callback(self, msg):
@@ -90,7 +90,9 @@ class StatePublisher(Node):
         self.oklol.move_to_class(class_nb, now)
 
 def main():
+    rclpy.init()
     node = StatePublisher()
+    rclpy.spin(node)
 
 if __name__ == '__main__':
     main()
