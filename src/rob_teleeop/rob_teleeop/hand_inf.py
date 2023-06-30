@@ -76,6 +76,7 @@ class HandInf(Node):
         if self.mat is not None:
             # cast to uint8 and reshape
             img = img.astype(np.uint8)
+            img = img.reshape(28, 28, 1)
             cv2.imshow('image', img)
             cv2.waitKey(5)
 
