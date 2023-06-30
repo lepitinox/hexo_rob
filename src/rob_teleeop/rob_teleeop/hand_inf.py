@@ -30,6 +30,12 @@ class HandInf(Node):
     def hand_callback(self, msg):
         # convert the image to a numpy array
         img = np.array(msg.data)
+        # crop the image
+        img = img.reshape(480, 640, 3)
+        img = img[0:480, 160:480]
+        img = img.reshape(320, 320, 3)
+        # convert the image to grayscale
+        img = tf.image.rgb_to_grayscale(img)
         # reshape the image to the correct shape
         img = img.reshape(-1, 28, 28, 1)
         # do the prediction
