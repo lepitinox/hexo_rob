@@ -30,11 +30,11 @@ class UpdateHand:
 
 
     def move_to_class(self, class_nb):
-        self._joint_state = JointState()
         self.move_to(TO_POSITION_CLASS[class_nb])
         
     
     def move_to(self, config):
+        self._joint_state = JointState()
         now = self.get_clock().now()
         self._joint_state.header.stamp = now.to_msg()
         self._joint_state.name = [
@@ -58,7 +58,7 @@ class UpdateHand:
             "finger5_joint1",
             "finger5_joint2",
             "finger5_joint3",
-            "finger5_joint4",
+            "finger5_joint4"
         ]
         oklol = []
         for i in config:
@@ -68,8 +68,9 @@ class UpdateHand:
 
 
 class StatePublisher(Node):
-
+    a = 0
     def __init__(self):
+
         rclpy.init()
         super().__init__('state_publisher')
 
@@ -79,7 +80,9 @@ class StatePublisher(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
         self.sub = self.create_subscription(Int32, 'hand_class', self.joint_callback, qos_profile)
         self.oklol = UpdateHand(self.joint_pub)
-        self.oklol.move_to(INIT)
+        if a == 0:   
+            self.oklol.move_to(INIT)
+        a += 1
         rclpy.spin(self)
 
     def joint_callback(self, msg):
