@@ -37,7 +37,7 @@ class HandInf(Node):
         # convert the image to grayscale
         img = tf.image.rgb_to_grayscale(img)
         # reshape the image to the correct shape
-        img = img.reshape(-1, 28, 28, 1)
+        img = tf.reshape(img, (-1, 28, 28, 1))
         # do the prediction
         pred = self.model.predict(img)
         # get the predicted class
