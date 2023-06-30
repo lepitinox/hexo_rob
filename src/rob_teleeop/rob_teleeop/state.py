@@ -92,6 +92,8 @@ def main():
     now = node.get_clock().now()
     node.oklol.move_to(INIT, now)
     rclpy.spin(node)
+    now = node.get_clock().now()
+    node.oklol.move_to(INIT, now)
     rclpy.shutdown()
 
 if __name__ == '__main__':
