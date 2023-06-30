@@ -5,7 +5,14 @@ from rclpy.qos import QoSProfile
 from geometry_msgs.msg import Quaternion
 from sensor_msgs.msg import JointState
 from tf2_ros import TransformBroadcaster, TransformStamped
+from std_msgs.msg import Int32
 
+TO_POSITION_CLASS = {
+0: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]],
+1: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]],
+2: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]],
+3: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]]
+}
 
 class UpdateHand:
     """
@@ -17,8 +24,46 @@ class UpdateHand:
         "finger2_joint1": 0.0,
         ...
     """
-    def __init__(self, config) -> None:
-        pass
+    def __init__(self, publisher) -> None:
+        self._publisher = publisher
+        self._joint_state = JointState()
+
+
+    def move_to_class(self, class_nb):
+        self._joint_state = JointState()
+        self.__move_to(TO_POSITION_CLASS[class_nb])
+        self._publisher.publish(self._joint_state)
+    
+    def __move_to(self, config):
+        now = self.get_clock().now()
+        self._joint_state.header.stamp = now.to_msg()
+        self._joint_state.name = [
+            "handle_joint",
+            "finger1_joint1",
+            "finger1_joint2",
+            "finger1_joint3",
+            "finger1_joint4",
+            "finger2_joint1",
+            "finger2_joint2",
+            "finger2_joint3",
+            "finger2_joint4",
+            "finger3_joint1",
+            "finger3_joint2",
+            "finger3_joint3",
+            "finger3_joint4",
+            "finger4_joint1",
+            "finger4_joint2",
+            "finger4_joint3",
+            "finger4_joint4",
+            "finger5_joint1",
+            "finger5_joint2",
+            "finger5_joint3",
+            "finger5_joint4",
+        ]
+        oklol = []
+        for i in config:
+            oklol+=i
+        self._joint_state.position = oklol
 
 
 class StatePublisher(Node):
@@ -31,44 +76,13 @@ class StatePublisher(Node):
         self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
         self.nodeName = self.get_name()
         self.get_logger().info("{0} started".format(self.nodeName))
+        self.sub = self.create_subscription(Int32, 'hand_class', self.joint_callback, qos_profile)
+        self.oklol = UpdateHand(self.joint_pub)
+        rclpy.spin(self)
 
-        degree = pi / 180.0
-        loop_rate = self.create_rate(30)
-
-        joint_state = JointState()
-        a = 0
-        b = 0.01
-
-
-        try:
-            while rclpy.ok():
-                rclpy.spin_once(self)
-
-                # update joint_state
-                now = self.get_clock().now()
-                joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['handle_joint']
-                joint_state.position = [0.0]
-                for i in range(1, 6):
-                    for j in range(1, 5):
-                        joint_state.name.append('finger{}_joint{}'.format(i, j))
-                        if j == 1:
-                            joint_state.position.append(0.0)
-                        else:
-                            joint_state.position.append(a)
-                if a > 1.57:
-                    b = -0.01
-                elif a < 0:
-                    b = 0.01
-                a += b
-
-
-
-                self.joint_pub.publish(joint_state)
-                loop_rate.sleep()
-
-        except KeyboardInterrupt:
-            pass
+    def joint_callback(self, msg):
+        class_nb = msg.data
+        self.oklol.move_to_class(class_nb)
 
 def main():
     node = StatePublisher()
