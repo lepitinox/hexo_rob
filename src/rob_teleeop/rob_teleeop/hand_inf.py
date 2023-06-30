@@ -13,6 +13,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 import rclpy
 import cv2
+from std_msgs.msg import Int32
+
 
 
 class HandInf(Node):
@@ -24,7 +26,8 @@ class HandInf(Node):
         self.model = keras.models.load_model(self.share_path/'hand_sign_model.h5')
         # subscribe to the hand image topic
         self.hand_sub = self.create_subscription(Image, 'hand_image', self.hand_callback, 10)
-
+        # publish the predicted class as a int32
+        self.hand_pub = self.create_publisher(Int32, 'hand_class', 10)
         self.mat = None
         rclpy.spin(self)
 
@@ -54,8 +57,11 @@ class HandInf(Node):
         pred_class = np.argmax(pred)
         # print the predicted class
         print(pred_class)
+        # publish the predicted class
+        msg = Int32()
+        msg.data = pred_class
+        self.hand_pub.publish(msg)
         # log the predicted class
-        self.get_logger().info(f'Predicted class: {pred_class}')
         sz = (msg.height, msg.width)
         # print(msg.header.stamp)
 
