@@ -13,7 +13,6 @@ share_path = Path(get_package_share_directory('rob_teleeop'))
 train_df = pd.read_csv(share_path/'sign_mnist_train.csv')
 test_df = pd.read_csv(share_path/'sign_mnist_test.csv')
 
-input_shape = train_df.iloc[:, 1:].shape[1:]
 
 X_train = np.array(train_df.iloc[:, 1:]).reshape(-1, 28, 28, 1)
 y_train = np.array(train_df.iloc[:, 0])
@@ -21,6 +20,7 @@ y_train = np.array(train_df.iloc[:, 0])
 X_test = np.array(test_df.iloc[:, 1:]).reshape(-1, 28, 28, 1)
 y_test = np.array(test_df.iloc[:, 0])
 
+input_shape = (28, 28, 1)
 
 model = keras.Sequential()
 model.add(layers.Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape))
