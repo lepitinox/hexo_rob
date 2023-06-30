@@ -27,6 +27,7 @@ setup(
         'console_scripts': [
             'state = rob_teleeop.state:main'
             'hand_inf = rob_teleeop.hand_inf:main'
+            "hand_train_vnn = rob_teleeop.hand_train_vnn:main"
         ],
     },
 )
