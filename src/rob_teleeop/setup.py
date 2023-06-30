@@ -15,6 +15,7 @@ setup(
         (os.path.join('share', package_name), glob(f'{package_name}/launch/*.launch.py')),
         (os.path.join('share', package_name), glob(f'{package_name}/urdf/*.urdf.xacro')),
         (os.path.join('share', package_name), glob(f'{package_name}/models/*.stl')),
+        (os.path.join('share', package_name), glob(f'{package_name}/data/*.csv')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
