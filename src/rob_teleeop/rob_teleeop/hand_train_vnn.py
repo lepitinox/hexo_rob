@@ -49,3 +49,6 @@ def main(args=None):
     model.fit(x=X_train, y=y_train, validation_data=(X_test, y_test),epochs=25, callbacks=[early_stop])
 
     model.save(share_path/'hand_sign_model.h5')
+
+if __name__ == '__main__':
+    main()
