@@ -67,7 +67,7 @@ def generate_launch_description():
         )
     
     hand_inf = Node(
-        package='rob_teleeop', executable='hand_inf.py', output='screen',
+        package='rob_teleeop', executable='hand_inf', output='screen',
         name="hand_inf",
         )
 
