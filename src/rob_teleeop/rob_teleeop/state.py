@@ -81,6 +81,7 @@ class StatePublisher(Node):
         self.oklol = UpdateHand(self.joint_pub)
         now = self.get_clock().now()
         self.oklol.move_to(INIT, now)
+        rclpy.spin(self)
 
 
     def joint_callback(self, msg):
