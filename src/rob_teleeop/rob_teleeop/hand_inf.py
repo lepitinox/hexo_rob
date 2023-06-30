@@ -77,7 +77,8 @@ class HandInf(Node):
             # cast to uint8 and reshape
             img = img.astype(np.uint8)
             img = img.reshape(28, 28, 1)
-            cv2.imshow('image', img)
+            cv2.imshow('inf input', img)
+            cv2.imshow('hand image', self.mat)
             cv2.waitKey(5)
 
 
