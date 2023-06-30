@@ -46,6 +46,10 @@ class HandInf(Node):
         img = np.array(img)
         # log the shape of the image
         self.get_logger().info(f"Image shape4: {img.shape}")
+        # reshape the image to 1x28x28x1
+        img = img.reshape(1, 28, 28, 1)
+        # log the shape of the image
+        self.get_logger().info(f"Image shape5: {img.shape}")
         # do the prediction
         pred = self.model.predict(img)
         # get the predicted class
