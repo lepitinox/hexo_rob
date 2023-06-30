@@ -8,6 +8,8 @@ from launch.substitutions import Command, LaunchConfiguration
 
 from launch_ros.parameter_descriptions import ParameterValue
 
+from ament_index_python.packages import get_package_share_directory
+
 from pathlib import Path
 
 
@@ -36,6 +38,12 @@ def generate_launch_description():
     robot_description = ParameterValue(Command(["xacro ",LaunchConfiguration('model')]),
                                        value_type=str)
 
+    usb_cam_dir = get_package_share_directory('usb_cam')
+    params_path = os.path.join(
+        usb_cam_dir,
+        'config',
+        'params.yaml'
+    )
 
     # Configure the robot_state_publisher node
     robot_state_publisher = Node(
@@ -52,6 +60,16 @@ def generate_launch_description():
         name="state",
         output="screen",
     )
+    usb_cam = Node(
+        package='usb_cam', executable='usb_cam_node_exe', output='screen',
+        name="my_usb_cam",
+        parameters=[params_path]
+        )
+    
+    hand_inf = Node(
+        package='rob_teleeop', executable='hand_inf.py', output='screen',
+        name="hand_inf",
+        )
 
     # Describe the launch process
     ld = LaunchDescription(
@@ -60,6 +78,8 @@ def generate_launch_description():
             robot_state_publisher,
             rviz_node,
             custom_state_publisher,
+            usb_cam,
+            hand_inf
         ]
     )
 

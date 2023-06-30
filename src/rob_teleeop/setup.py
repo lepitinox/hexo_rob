@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'state = rob_teleeop.state:main'
+            'hand_inf = rob_teleeop.hand_inf:main'
         ],
     },
 )
