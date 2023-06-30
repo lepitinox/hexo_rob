@@ -58,12 +58,10 @@ class HandInf(Node):
         # print the predicted class
         print(pred_class)
         # publish the predicted class
-        msg = Int32()
-        msg.data = int(pred_class)
-        self.hand_pub.publish(msg)
+        msgs = Int32()
+        msgs.data = int(pred_class)
+        self.hand_pub.publish(msgs)
         # log the predicted class
-        sz = (msg.height, msg.width)
-        # print(msg.header.stamp)
 
         if msg.encoding == 'rgb8':
             dirty = (self.mat is None or msg.width != self.mat.shape[1] or
