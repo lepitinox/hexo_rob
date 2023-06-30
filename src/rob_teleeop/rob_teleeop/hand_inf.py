@@ -30,6 +30,9 @@ class HandInf(Node):
     def hand_callback(self, msg):
         # convert the image to a numpy array
         img = np.array(msg.data)
+        # log the shape of the image
+        self.get_logger().info(f"Image shape: {img.shape}")
+        
         # crop the image
         img = img.reshape(480, 640, 3)
         img = img[0:480, 80:560]
