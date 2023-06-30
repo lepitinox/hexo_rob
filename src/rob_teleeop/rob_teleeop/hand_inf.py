@@ -43,6 +43,7 @@ class HandInf(Node):
         # log the shape of the image
         # convert the image to a numpy array
         img = np.array(img)
+        tmp = img.copy()
         # log the shape of the image
         # reshape the image to 1x28x28x1
         img = img.reshape(1, 28, 28, 1)
@@ -81,8 +82,7 @@ class HandInf(Node):
             print('unsupported encoding {}'.format(msg.encoding))
             return
         if self.mat is not None:
-            img = img.reshape(28, 28, 1)
-            cv2.imshow('image', img)
+            cv2.imshow('image', tmp)
             cv2.waitKey(5)
 
 
