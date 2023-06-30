@@ -6,7 +6,7 @@ from geometry_msgs.msg import Quaternion
 from sensor_msgs.msg import JointState
 from tf2_ros import TransformBroadcaster, TransformStamped
 from std_msgs.msg import Int32
-
+INIT = [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.0, 0.0, 0.0]]
 TO_POSITION_CLASS = {
 0: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]],
 1: [[0.0],[0.0, 0.0, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0],[0.0, 0.5, 0.0, 0.0]],
@@ -31,10 +31,10 @@ class UpdateHand:
 
     def move_to_class(self, class_nb):
         self._joint_state = JointState()
-        self.__move_to(TO_POSITION_CLASS[class_nb])
+        self.move_to(TO_POSITION_CLASS[class_nb])
         self._publisher.publish(self._joint_state)
     
-    def __move_to(self, config):
+    def move_to(self, config):
         now = self.get_clock().now()
         self._joint_state.header.stamp = now.to_msg()
         self._joint_state.name = [
@@ -78,6 +78,7 @@ class StatePublisher(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
         self.sub = self.create_subscription(Int32, 'hand_class', self.joint_callback, qos_profile)
         self.oklol = UpdateHand(self.joint_pub)
+        self.oklol.move_to(INIT)
         rclpy.spin(self)
 
     def joint_callback(self, msg):
