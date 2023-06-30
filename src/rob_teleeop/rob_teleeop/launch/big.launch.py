@@ -63,7 +63,8 @@ def generate_launch_description():
     usb_cam = Node(
         package='usb_cam', executable='usb_cam_node_exe', output='screen',
         name="my_usb_cam",
-        parameters=[params_path]
+        parameters=[params_path],
+        remappings=[("image_raw", "hand_image")],
         )
     
     hand_inf = Node(
