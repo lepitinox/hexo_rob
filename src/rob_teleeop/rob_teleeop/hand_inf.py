@@ -82,6 +82,8 @@ class HandInf(Node):
             return
         if self.mat is not None:
             self.get_logger().info(f'zize: {self.mat}')
+            img = img.reshape(28, 28, 1)
+            self.get_logger().info(f'zqsdqsdize: {img}')
             cv2.imshow('image', self.mat)
             cv2.waitKey(5)
 
