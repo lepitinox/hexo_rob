@@ -59,7 +59,7 @@ class HandInf(Node):
         print(pred_class)
         # publish the predicted class
         msg = Int32()
-        msg.data = pred_class
+        msg.data = int(pred_class)
         self.hand_pub.publish(msg)
         # log the predicted class
         sz = (msg.height, msg.width)
