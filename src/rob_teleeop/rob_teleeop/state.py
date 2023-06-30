@@ -68,7 +68,7 @@ class UpdateHand:
 
 
 class StatePublisher(Node):
-    a = 0
+
     def __init__(self):
 
         rclpy.init()
@@ -80,10 +80,8 @@ class StatePublisher(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
         self.sub = self.create_subscription(Int32, 'hand_class', self.joint_callback, qos_profile)
         self.oklol = UpdateHand(self.joint_pub)
-        if a == 0:   
-            self.oklol.move_to(INIT)
-        a += 1
-        rclpy.spin(self)
+        self.oklol.move_to(INIT)
+
 
     def joint_callback(self, msg):
         class_nb = msg.data
