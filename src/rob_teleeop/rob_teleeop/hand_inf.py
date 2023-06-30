@@ -82,6 +82,7 @@ class HandInf(Node):
             print('unsupported encoding {}'.format(msg.encoding))
             return
         if self.mat is not None:
+            self.get_logger().info(f'dZsqd clqsdasqds: {tmp.shape}')
             cv2.imshow('image', tmp)
             cv2.waitKey(5)
 
