@@ -32,7 +32,7 @@ class UpdateHand:
     def move_to_class(self, class_nb):
         self._joint_state = JointState()
         self.move_to(TO_POSITION_CLASS[class_nb])
-        self._publisher.publish(self._joint_state)
+        
     
     def move_to(self, config):
         now = self.get_clock().now()
@@ -64,6 +64,7 @@ class UpdateHand:
         for i in config:
             oklol+=i
         self._joint_state.position = oklol
+        self._publisher.publish(self._joint_state)
 
 
 class StatePublisher(Node):
