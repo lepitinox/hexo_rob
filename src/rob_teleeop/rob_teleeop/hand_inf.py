@@ -33,7 +33,7 @@ class HandInf(Node):
         # crop the image
         img = img.reshape(480, 640, 3)
         img = img[0:480, 160:480]
-        img = img.reshape(320, 320, 3)
+        img = img.reshape(480, 480, 3)
         # convert the image to grayscale
         img = tf.image.rgb_to_grayscale(img)
         # reshape the image to the correct shape
