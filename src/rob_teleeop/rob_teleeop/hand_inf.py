@@ -31,8 +31,6 @@ class HandInf(Node):
         # convert the image to a numpy array
         img = np.array(msg.data)
         # crop the image to a square
-        img = img.reshape(480, 640, 3)
-        img = img[0:480, 160:480]
         # resize the image to 28x28
         img = tf.image.resize(img, [28, 28])
         # convert the image to grayscale
