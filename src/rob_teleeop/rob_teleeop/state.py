@@ -30,8 +30,10 @@ class UpdateHand:
 
 
     def move_to_class(self, class_nb,now):
-        self.move_to(TO_POSITION_CLASS[int(class_nb)],now)
-        
+        try:
+            self.move_to(TO_POSITION_CLASS[int(class_nb)],now)
+        except Exception as e:
+            self.move_to(INIT,now)
     
     def move_to(self, config,now):
         self._joint_state = JointState()
@@ -82,6 +84,7 @@ class StatePublisher(Node):
         self.oklol = UpdateHand(self.joint_pub)
         now = self.get_clock().now()
         self.oklol.move_to(INIT, now)
+        rclpy.spin_once(self)
         
 
 
