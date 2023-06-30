@@ -81,7 +81,8 @@ class HandInf(Node):
             print('unsupported encoding {}'.format(msg.encoding))
             return
         if self.mat is not None:
-            cv2.imshow('image', img/255.0)
+            self.get_logger().info(f'zize: {self.mat.shape}')
+            cv2.imshow('image', self.mat)
             cv2.waitKey(5)
 
 
