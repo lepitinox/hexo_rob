@@ -35,7 +35,7 @@ class HandInf(Node):
         # print the predicted class
         print(pred_class)
 
-if __name__ == '__main__':
+def main():
     # create the node
     rclpy.init()
     node = HandInf()
@@ -43,3 +43,5 @@ if __name__ == '__main__':
     rclpy.spin()
     # destroy the node
     rclpy.shutdown()
+
+if __name__ == '__main__':
